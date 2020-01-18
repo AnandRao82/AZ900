@@ -1,0 +1,14 @@
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+  - step:
+      script:
+      - pipe: atlassian/google-app-engine-deploy:0.2.1
+        variables:
+          KEY_FILE: $GCLOUD_KEY_FILE
+          PROJECT: 'civil-array-221002'
+          VERSION: '${BITBUCKET_BUILD_NUMBER}'
+          PROMOTE: 'true'
+          STOP_PREVIOUS_VERSION: 'true'
+          EXTRA_ARGS: '--verbosity=debug'
